@@ -1,0 +1,33 @@
+/// The base spacing unit
+const double xUnit = 4.0;
+
+const double x1 = xUnit * 1;
+const double x2 = xUnit * 2;
+const double x3 = xUnit * 3;
+const double x4 = xUnit * 4;
+const double x5 = xUnit * 5;
+const double x6 = xUnit * 6;
+const double x7 = xUnit * 7;
+const double x8 = xUnit * 8;
+const double x9 = xUnit * 9;
+const double x10 = xUnit * 10;
+const double x11 = xUnit * 11;
+const double x12 = xUnit * 12;
+const double x13 = xUnit * 13;
+const double x14 = xUnit * 14;
+const double x15 = xUnit * 15;
+const double x16 = xUnit * 16;
+const double x17 = xUnit * 17;
+const double x18 = xUnit * 18;
+const double x19 = xUnit * 19;
+const double x20 = xUnit * 20;
+const double x21 = xUnit * 21;
+const double x22 = xUnit * 22;
+const double x23 = xUnit * 23;
+const double x24 = xUnit * 24;
+const double x25 = xUnit * 25;
+const double x26 = xUnit * 26;
+const double x27 = xUnit * 27;
+const double x28 = xUnit * 28;
+const double x29 = xUnit * 29;
+const double x30 = xUnit * 30;
