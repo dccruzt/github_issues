@@ -5,6 +5,8 @@ class IssueDTO {
     required this.title,
     required this.createdAt,
     required this.author,
+    this.body,
+    this.labels,
   });
 
   final int id;
@@ -12,6 +14,8 @@ class IssueDTO {
   final String title;
   final String createdAt;
   final String author;
+  final String? body;
+  final List<String>? labels;
 
   factory IssueDTO.fromJson(Map<String, dynamic> json) => IssueDTO(
         id: json['id'],
@@ -19,13 +23,9 @@ class IssueDTO {
         title: json['title'],
         createdAt: json['created_at'],
         author: json['user']['login'],
+        body: json['body'],
+        labels: (json['labels'] as Iterable)
+            .map((e) => e['name'] as String)
+            .toList(growable: false),
       );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'number': number,
-        'title': title,
-        'created_at': createdAt,
-        'author': author,
-      };
 }

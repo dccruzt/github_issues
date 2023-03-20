@@ -13,5 +13,7 @@ class MapperImpl implements Mapper {
         title: from.title,
         createdAt: DateTime.tryParse(from.createdAt) ?? DateTime.now(),
         author: from.author,
+        body: from.body,
+        labels: from.labels,
       );
 }

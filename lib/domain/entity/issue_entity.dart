@@ -7,6 +7,8 @@ class IssueEntity extends Equatable {
     required this.title,
     required this.createdAt,
     required this.author,
+    this.body,
+    this.labels,
   });
 
   final int id;
@@ -14,6 +16,8 @@ class IssueEntity extends Equatable {
   final String title;
   final DateTime createdAt;
   final String author;
+  final String? body;
+  final List<String>? labels;
 
   @override
   List<Object?> get props => [
@@ -22,5 +26,7 @@ class IssueEntity extends Equatable {
         title,
         createdAt,
         author,
+        body,
+        labels,
       ];
 }

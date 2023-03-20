@@ -21,4 +21,20 @@ class IssuesRemoteDataSource {
       rethrow;
     }
   }
+
+  Future<IssueDTO> getIssue(int number) async {
+    try {
+      final url =
+          Uri.https('api.github.com', 'repos/flutter/flutter/issues/$number');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body) as Map<String, dynamic>;
+        return IssueDTO.fromJson(json);
+      }
+      throw Exception();
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
