@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/design_system/components/action_row.dart';
+import '../../core/design_system/spacings.dart';
 import '../../domain/entity/issue_entity.dart';
 
 class IssuesRowList extends StatelessWidget {
@@ -20,6 +21,10 @@ class IssuesRowList extends StatelessWidget {
 
     return ListView(
       children: [
+        Padding(
+          padding: const EdgeInsets.only(left: x4, bottom: x2),
+          child: Text('Github issues', style: theme.textTheme.titleLarge),
+        ),
         ...issues.map(
           (issue) {
             final secondary =
@@ -27,14 +32,14 @@ class IssuesRowList extends StatelessWidget {
             return ActionRow(
               primary: Text(
                 issue.title,
-                style: theme.textTheme.bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.bodyLarge,
                 maxLines: 2,
               ),
               secondary: Text(
                 secondary,
                 style: theme.textTheme.bodyMedium,
               ),
+              trailing: const Icon(Icons.chevron_right),
               onTap: () => onTap.call(issue.number),
             );
           },
