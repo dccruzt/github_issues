@@ -33,7 +33,8 @@ class IssuesRowList extends StatelessWidget {
               leading: const Icon(Icons.circle_notifications_sharp),
               primary: Text(
                 issue.title,
-                style: theme.textTheme.bodyLarge,
+                style: theme.textTheme.bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.w700),
                 maxLines: 2,
               ),
               secondary: Text(

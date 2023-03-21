@@ -7,6 +7,8 @@ import '../../core/theme_provider.dart';
 import '../controller/issues_controller.dart';
 import '../widget/issues_row_list.dart';
 import 'arguments/issue_arguments.dart';
+import 'error_page.dart';
+import 'loading_page.dart';
 
 class IssuesPage extends StatelessWidget {
   const IssuesPage({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class IssuesPage extends StatelessWidget {
       body: IssuesCubitProvider(
         child: BlocBuilder<IssuesCubit, IssuesState>(builder: (context, state) {
           if (state.error != null) {
-            return const Text('ERROR');
+            return const ErrorPage();
           }
           if (state.issues != null) {
             return IssuesRowList(
@@ -40,7 +42,7 @@ class IssuesPage extends StatelessWidget {
                   arguments: IssueArguments(number: number)),
             );
           }
-          return Container();
+          return const LoadingPage();
         }),
       ),
     );

@@ -6,6 +6,8 @@ import '../../core/design_system/components/label_tag.dart';
 import '../../core/design_system/spacings.dart';
 import '../controller/issue_controller.dart';
 import 'arguments/issue_arguments.dart';
+import 'error_page.dart';
+import 'loading_page.dart';
 
 class IssueDetailPage extends StatelessWidget {
   const IssueDetailPage({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class IssueDetailPage extends StatelessWidget {
       child: BlocBuilder<IssueCubit, IssueState>(
         builder: (context, state) {
           if (state.error != null) {
-            return const Text('ERROR');
+            return const ErrorPage();
           }
           if (state.issue != null) {
             final description =
@@ -62,7 +64,7 @@ class IssueDetailPage extends StatelessWidget {
               ),
             );
           }
-          return const SizedBox.shrink();
+          return const LoadingPage();
         },
       ),
     );
