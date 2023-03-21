@@ -15,5 +15,6 @@ class MapperImpl implements Mapper {
         author: from.author,
         body: from.body,
         labels: from.labels,
+        visited: false,
       );
 }

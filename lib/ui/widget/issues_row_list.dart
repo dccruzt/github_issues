@@ -29,14 +29,19 @@ class IssuesRowList extends StatelessWidget {
           (issue) {
             final secondary =
                 '#${issue.number} opened ${timeago.format(issue.createdAt)} ago by ${issue.author}';
+
+            final textStyle = issue.visited
+                ? theme.textTheme.bodyLarge
+                : theme.textTheme.bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.w800);
+
+            final icon = issue.visited
+                ? const Icon(Icons.circle_outlined)
+                : const Icon(Icons.circle_notifications_sharp);
+
             return ActionRow(
-              leading: const Icon(Icons.circle_notifications_sharp),
-              primary: Text(
-                issue.title,
-                style: theme.textTheme.bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.w700),
-                maxLines: 2,
-              ),
+              leading: icon,
+              primary: Text(issue.title, style: textStyle, maxLines: 2),
               secondary: Text(
                 secondary,
                 style: theme.textTheme.bodyMedium,
