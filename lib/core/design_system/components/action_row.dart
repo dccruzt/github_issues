@@ -46,7 +46,7 @@ class ActionRow extends StatelessWidget {
                   children: [
                     if (leading != null) ...[
                       leading!,
-                      const SizedBox(width: x4),
+                      const SizedBox(width: x2),
                     ],
                     if (primary != null) Expanded(child: primary!),
                     if (trailing != null) ...[

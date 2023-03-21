@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'core/app_routes.dart';
-import 'core/design_system/dark_app_theme.dart';
+import 'core/design_system/app_themes.dart';
+import 'core/theme_provider.dart';
 import 'di/dependency_injection.dart';
 import 'ui/page/issue_detail_page.dart';
 import 'ui/page/issues_page.dart';
@@ -23,20 +25,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  ThemeProvider themeProvider = ThemeProvider();
+
   @override
   void initState() {
     super.initState();
+    getThemeFromPrefs();
+  }
+
+  void getThemeFromPrefs() async {
+    themeProvider.isDark = await themeProvider.localDataSource.isDarkTheme();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My App',
-      theme: appThemeData,
-      home: const IssuesPage(),
-      routes: {
-        AppRoutes.issueDetail: (context) => const IssueDetailPage(),
-      },
+    return ChangeNotifierProvider(
+      create: (_) => themeProvider,
+      child: Consumer<ThemeProvider>(
+        builder: (context, value, child) => MaterialApp(
+          title: 'My App',
+          theme: themeProvider.isDark ? darkAppThemeData : lightAppThemeData,
+          home: const IssuesPage(),
+          routes: {
+            AppRoutes.issueDetail: (context) => const IssueDetailPage(),
+          },
+        ),
+      ),
     );
   }
 }

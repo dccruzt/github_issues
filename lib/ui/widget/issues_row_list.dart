@@ -30,6 +30,7 @@ class IssuesRowList extends StatelessWidget {
             final secondary =
                 '#${issue.number} opened ${timeago.format(issue.createdAt)} ago by ${issue.author}';
             return ActionRow(
+              leading: const Icon(Icons.circle_notifications_sharp),
               primary: Text(
                 issue.title,
                 style: theme.textTheme.bodyLarge,
@@ -39,7 +40,6 @@ class IssuesRowList extends StatelessWidget {
                 secondary,
                 style: theme.textTheme.bodyMedium,
               ),
-              trailing: const Icon(Icons.chevron_right),
               onTap: () => onTap.call(issue.number),
             );
           },
