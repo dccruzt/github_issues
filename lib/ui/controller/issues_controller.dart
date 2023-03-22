@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/dependency_injection.dart';
 import '../../domain/entity/issue_entity.dart';
 import '../../domain/use_case/get_issues_use_case.dart';
 import '../../domain/use_case/manage_visited_issues_use_case.dart';
+import '../widget/sort_dropdown_button.dart';
 
 class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
   IssuesCubitProvider({super.key, super.child})
@@ -15,6 +17,9 @@ class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
                   getIssuesUseCase: di(),
                   manageVisitedIssuesUseCase: di(),
                 )..init());
+
+  static IssuesCubit of(BuildContext context) =>
+      BlocProvider.of<IssuesCubit>(context);
 }
 
 class IssuesCubit extends Cubit<IssuesState> {
@@ -48,6 +53,24 @@ class IssuesCubit extends Cubit<IssuesState> {
       .call()
       .then((value) => emit(state.copyWith(issues: value)))
       .catchError((error) => emit(state.copyWith(error: error)));
+
+  void sortIssues(SortBy sortBy) {
+    List<IssueEntity> sortedIssues = List.of(state.issues ?? []);
+
+    switch (sortBy) {
+      case SortBy.newest:
+        sortedIssues.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        break;
+      case SortBy.oldest:
+        sortedIssues.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+        break;
+      case SortBy.alphabet:
+        sortedIssues.sort(
+            (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
+        break;
+    }
+    emit(state.copyWith(issues: sortedIssues));
+  }
 
   @override
   Future<void> close() {

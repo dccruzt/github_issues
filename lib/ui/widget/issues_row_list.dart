@@ -4,6 +4,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../core/design_system/components/action_row.dart';
 import '../../core/design_system/spacings.dart';
 import '../../domain/entity/issue_entity.dart';
+import '../controller/issues_controller.dart';
+import 'sort_dropdown_button.dart';
 
 class IssuesRowList extends StatelessWidget {
   const IssuesRowList({
@@ -24,6 +26,19 @@ class IssuesRowList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: x4, bottom: x2),
           child: Text('Github issues', style: theme.textTheme.titleLarge),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: x4, bottom: x2),
+          child: Row(
+            children: [
+              const Text('Sort by:'),
+              const SizedBox(width: x2),
+              SortDropdownButton(
+                onTap: (value) =>
+                    IssuesCubitProvider.of(context).sortIssues(value),
+              ),
+            ],
+          ),
         ),
         ...issues.map(
           (issue) {
