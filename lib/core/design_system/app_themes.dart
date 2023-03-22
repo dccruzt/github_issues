@@ -22,6 +22,7 @@ ThemeData lightAppThemeData = ThemeData(
   textTheme: const TextTheme(
     bodyLarge: TextStyle(fontSize: 18.0, color: lightBlack),
     bodyMedium: TextStyle(fontSize: 16.0, color: lightGrey),
+    titleMedium: TextStyle(fontSize: 20.0, color: lightBlack),
     titleLarge: TextStyle(
       fontSize: 28.0,
       color: lightBlack,
@@ -50,6 +51,7 @@ ThemeData darkAppThemeData = ThemeData(
   textTheme: const TextTheme(
     bodyLarge: TextStyle(fontSize: 18.0, color: darkWhite),
     bodyMedium: TextStyle(fontSize: 16.0, color: darkGrey),
+    titleMedium: TextStyle(fontSize: 20.0, color: darkWhite),
     titleLarge: TextStyle(
       fontSize: 28.0,
       color: darkWhite,
