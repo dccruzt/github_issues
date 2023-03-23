@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Fetch all history for all tags and branches
-        run: git fetch --prune --depth=10000
       - name: Fetch all branches and tags
         run: git fetch --unshallow
       - name: Install GitVersion
@@ -41,7 +39,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.17.0'
+          flutter-version: '3.7.7'
       - name: Get version.txt
         uses: actions/download-artifact@v2
         with:
