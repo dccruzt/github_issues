@@ -18,11 +18,11 @@ class IssuesStateFake extends Fake implements IssuesState {}
 @GenerateMocks([GetIssuesUseCase])
 void main() {
   late MockIssuesCubit issuesCubit;
-  late MockGetIssuesUseCase getApplicationsUseCase;
+  late MockGetIssuesUseCase getIssuesUseCase;
 
   setUp(() {
     issuesCubit = MockIssuesCubit();
-    getApplicationsUseCase = MockGetIssuesUseCase();
+    getIssuesUseCase = MockGetIssuesUseCase();
   });
 
   setUpAll(() {
@@ -48,7 +48,7 @@ void main() {
     ),
   ];
 
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('issues screen renders well', (WidgetTester tester) async {
     when(() => issuesCubit.state).thenReturn(
       IssuesState(issues: issues),
     );
@@ -62,7 +62,7 @@ void main() {
               data: const MediaQueryData(),
               child: IssuesCubitProvider(
                 create: (context) => issuesCubit,
-                useCase: getApplicationsUseCase,
+                useCase: getIssuesUseCase,
                 child: const IssuesScreen(),
               ),
             ),
