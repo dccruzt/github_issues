@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../di/dependency_injection.dart';
 import '../../domain/entity/issue_entity.dart';
@@ -12,12 +13,17 @@ import '../widget/filter_dropdown_button.dart';
 import '../widget/sort_dropdown_button.dart';
 
 class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
-  IssuesCubitProvider({super.key, super.child})
-      : super(
-            create: (context) => IssuesCubit(
-                  getIssuesUseCase: di(),
-                  manageVisitedIssuesUseCase: di(),
-                )..init());
+  IssuesCubitProvider({
+    super.key,
+    super.child,
+    Create<IssuesCubit>? create,
+    GetIssuesUseCase? useCase,
+  }) : super(
+            create: create ??
+                (context) => IssuesCubit(
+                      getIssuesUseCase: di(),
+                      manageVisitedIssuesUseCase: di(),
+                    )..init());
 
   static IssuesCubit of(BuildContext context) =>
       BlocProvider.of<IssuesCubit>(context);

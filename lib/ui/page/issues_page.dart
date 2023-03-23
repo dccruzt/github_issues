@@ -19,21 +19,30 @@ class IssuesPage extends StatelessWidget {
         actions: const [ThemeSwitch()],
       ),
       body: IssuesCubitProvider(
-        child: BlocBuilder<IssuesCubit, IssuesState>(builder: (context, state) {
-          if (state.error != null) {
-            return const ErrorPage();
-          }
-          if (state.issues != null) {
-            return IssuesRowList(
-              issues: state.issues!,
-              onTap: (int number) => Navigator.pushNamed(
-                  context, AppRoutes.issueDetail,
-                  arguments: IssueArguments(number: number)),
-            );
-          }
-          return const LoadingPage();
-        }),
+        child: const IssuesScreen(),
       ),
     );
+  }
+}
+
+class IssuesScreen extends StatelessWidget {
+  const IssuesScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<IssuesCubit, IssuesState>(builder: (context, state) {
+      if (state.error != null) {
+        return const ErrorPage();
+      }
+      if (state.issues != null) {
+        return IssuesRowList(
+          issues: state.issues!,
+          onTap: (int number) => Navigator.pushNamed(
+              context, AppRoutes.issueDetail,
+              arguments: IssueArguments(number: number)),
+        );
+      }
+      return const LoadingPage();
+    });
   }
 }
