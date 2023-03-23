@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Fetch all history for all tags and branches
+          run: |
+            git fetch --prune --depth=10000
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
