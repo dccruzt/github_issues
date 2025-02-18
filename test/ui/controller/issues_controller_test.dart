@@ -99,7 +99,7 @@ void main() {
         ),
         IssuesState(
           issues: [issue3, issue2, issue1],
-          originalIssues: [issue1, issue2, issue3],
+          originalIssues: [issue3, issue2, issue1],
         ),
       ],
       verify: (cubit) => verify(getIssuesUseCase.call()).called(1),
