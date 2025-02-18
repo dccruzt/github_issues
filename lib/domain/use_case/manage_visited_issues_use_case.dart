@@ -28,7 +28,6 @@ class ManageVisitedIssuesUseCase {
         final visitedIssues = [..._controller.value, number];
         _controller.add(visitedIssues);
         repository.setVisitedIssues(visitedIssues);
-        // print('>>> number: $number and value: ${_controller.value}');
       }
     } catch (_) {
       rethrow;
