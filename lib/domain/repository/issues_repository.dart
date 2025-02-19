@@ -5,7 +5,7 @@ abstract class IssuesRepository {
 
   Future<IssueEntity> getIssue(int number);
 
-  setVisitedIssues(List<String> issues);
+  setVisitedIssue(String issue);
 
   Future<List<String>> getVisitedIssues();
 }

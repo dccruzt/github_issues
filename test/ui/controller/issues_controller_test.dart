@@ -61,7 +61,7 @@ void main() {
       ),
       setUp: () =>
           when(getIssuesUseCase.call()).thenAnswer((_) async => issues),
-      act: (cubit) => cubit.getIssues(),
+      act: (cubit) => cubit.init(),
       expect: () => [IssuesState(issues: issues, originalIssues: issues)],
       verify: (cubit) => verify(getIssuesUseCase.call()).called(1),
     );
@@ -74,7 +74,7 @@ void main() {
       ),
       setUp: () =>
           when(getIssuesUseCase.call()).thenAnswer((_) async => throw error),
-      act: (cubit) => cubit.getIssues(),
+      act: (cubit) => cubit.init(),
       expect: () => [
         IssuesState(issues: null, error: error),
       ],
@@ -89,7 +89,7 @@ void main() {
       setUp: () =>
           when(getIssuesUseCase.call()).thenAnswer((_) async => issues),
       act: (cubit) async {
-        await cubit.getIssues();
+        await cubit.init();
         cubit.sortIssues(SortBy.oldest);
       },
       expect: () => [
@@ -114,7 +114,7 @@ void main() {
       setUp: () =>
           when(getIssuesUseCase.call()).thenAnswer((_) async => issues),
       act: (cubit) async {
-        await cubit.getIssues();
+        await cubit.init();
         cubit.filterIssues(FilterBy.lastHour);
       },
       expect: () => [

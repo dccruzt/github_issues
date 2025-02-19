@@ -22,10 +22,15 @@ class IssuesLocalDataSource {
     }
   }
 
-  setVisitedIssues(List<String> issues) async {
+  setVisitedIssue(String issue) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setStringList(_visitedIssues, issues);
+
+      final issues = prefs.getStringList(_visitedIssues) ?? [];
+
+      if (!issues.contains(issue)) {
+        prefs.setStringList(_visitedIssues, issues..add(issue));
+      }
     } catch (_) {
       rethrow;
     }

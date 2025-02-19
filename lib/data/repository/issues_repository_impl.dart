@@ -47,9 +47,9 @@ class IssuesRepositoryImpl implements IssuesRepository {
   }
 
   @override
-  setVisitedIssues(List<String> issues) {
+  setVisitedIssue(String issue) {
     try {
-      localDataSource.setVisitedIssues(issues);
+      localDataSource.setVisitedIssue(issue);
     } catch (_) {
       rethrow;
     }

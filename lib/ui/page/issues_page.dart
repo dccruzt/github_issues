@@ -37,12 +37,17 @@ class IssuesScreen extends StatelessWidget {
       if (state.issues != null) {
         return IssuesRowList(
           issues: state.issues!,
-          onTap: (int number) => Navigator.pushNamed(
-              context, AppRoutes.issueDetail,
-              arguments: IssueArguments(number: number)),
+          onTap: (number) => _onTap(context, number),
         );
       }
       return const LoadingPage();
     });
+  }
+
+  void _onTap(BuildContext context, int number) {
+    IssuesCubitProvider.of(context).setVisitedIssue(number.toString());
+
+    Navigator.pushNamed(context, AppRoutes.issueDetail,
+        arguments: IssueArguments(number: number));
   }
 }

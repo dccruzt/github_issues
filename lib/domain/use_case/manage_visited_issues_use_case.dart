@@ -1,5 +1,4 @@
 import 'package:github_issues/domain/repository/issues_repository.dart';
-import 'package:rxdart/rxdart.dart';
 
 class ManageVisitedIssuesUseCase {
   ManageVisitedIssuesUseCase({
@@ -8,15 +7,11 @@ class ManageVisitedIssuesUseCase {
 
   final IssuesRepository repository;
 
-  late final BehaviorSubject<List<String>> _controller =
-      BehaviorSubject.seeded([], onListen: read);
-
-  Stream<List<String>> get stream => _controller.stream.distinct();
-
-  Future<void> read() async {
+  Future<List<String>> read() async {
     try {
       final visitedIssues = await repository.getVisitedIssues();
-      _controller.add(visitedIssues);
+
+      return visitedIssues;
     } catch (_) {
       rethrow;
     }
@@ -24,11 +19,7 @@ class ManageVisitedIssuesUseCase {
 
   Future<void> set(String number) async {
     try {
-      if (_controller.hasValue && !_controller.value.contains(number)) {
-        final visitedIssues = [..._controller.value, number];
-        _controller.add(visitedIssues);
-        repository.setVisitedIssues(visitedIssues);
-      }
+      repository.setVisitedIssue(number);
     } catch (_) {
       rethrow;
     }

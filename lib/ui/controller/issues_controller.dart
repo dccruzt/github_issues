@@ -41,39 +41,46 @@ class IssuesCubit extends Cubit<IssuesState> {
   StreamSubscription<List<String>>? _subscription;
 
   Future<void> init() async {
-    await getIssues();
-    _subscription = manageVisitedIssuesUseCase.stream.listen(
-      (event) {
-        List<IssueEntity> updatedIssues = List.of(state.issues ?? []);
-        state.issues?.asMap().forEach((index, value) {
-          if (event.contains(value.number.toString())) {
-            updatedIssues[index] = updatedIssues[index].copyWith(visited: true);
-          }
-        });
-        emit(state.copyWith(issues: updatedIssues));
-
-        List<IssueEntity> updatedOriginalIssues =
-            List.of(state.originalIssues ?? []);
-        state.originalIssues?.asMap().forEach((index, value) {
-          if (event.contains(value.number.toString())) {
-            updatedOriginalIssues[index] =
-                updatedOriginalIssues[index].copyWith(visited: true);
-          }
-        });
-        emit(state.copyWith(originalIssues: updatedOriginalIssues));
-      },
-      onError: (error, stackTrace) => emit(state.copyWith(error: error)),
-    );
+    await getIssuesUseCase
+        .call()
+        .then(
+          (value) => emit(
+            state.copyWith(issues: value, originalIssues: value),
+          ),
+        )
+        .catchError((error) => emit(state.copyWith(error: error)));
   }
 
-  Future<void> getIssues() => getIssuesUseCase
-      .call()
-      .then(
-        (value) => emit(
-          state.copyWith(issues: value, originalIssues: value),
+  void setVisitedIssue(String number) {
+    manageVisitedIssuesUseCase.set(number);
+
+    final updatedIssues = state.issues?.map((issue) {
+      return issue.number.toString() == number
+          ? issue.copyWith(visited: true)
+          : issue;
+    }).toList();
+
+    final updatedOriginalIssues = state.originalIssues?.map((issue) {
+      return issue.number.toString() == number
+          ? issue.copyWith(visited: true)
+          : issue;
+    }).toList();
+
+    _emit(issues: updatedIssues, originalIssues: updatedOriginalIssues);
+  }
+
+  void _emit({
+    List<IssueEntity>? issues,
+    List<IssueEntity>? originalIssues,
+    Object? error,
+  }) =>
+      emit(
+        state.copyWith(
+          issues: issues,
+          originalIssues: originalIssues,
+          error: error,
         ),
-      )
-      .catchError((error) => emit(state.copyWith(error: error)));
+      );
 
   void sortIssues(SortBy sortBy) {
     List<IssueEntity> sortedIssues = List.of(state.issues ?? []);
@@ -90,7 +97,7 @@ class IssuesCubit extends Cubit<IssuesState> {
             (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
         break;
     }
-    emit(state.copyWith(issues: sortedIssues));
+    emit(state.copyWith(issues: sortedIssues, originalIssues: sortedIssues));
   }
 
   void filterIssues(FilterBy filterBy) {

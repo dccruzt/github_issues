@@ -19,7 +19,7 @@ void main() {
       title: 'Flutter issue #1',
       createdAt: DateTime.now(),
       author: 'dccruzt',
-      visited: false,
+      visited: true,
     ),
     IssueEntity(
       id: 2,
@@ -31,16 +31,21 @@ void main() {
     ),
   ];
 
+  List<String> visitedIssues = ['1090'];
+
   test('should call getIssues method', () async {
     when(repository.getIssues()).thenAnswer((_) async => []);
+    when(repository.getVisitedIssues()).thenAnswer((_) async => []);
 
     await useCase.call();
 
     verify(repository.getIssues()).called(1);
+    verify(repository.getVisitedIssues()).called(1);
   });
 
   test('should return issues list', () async {
     when(repository.getIssues()).thenAnswer((_) async => issues);
+    when(repository.getVisitedIssues()).thenAnswer((_) async => visitedIssues);
 
     final result = await useCase.call();
 

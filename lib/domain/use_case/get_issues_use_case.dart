@@ -11,9 +11,17 @@ class GetIssuesUseCase implements UseCase<List<IssueEntity>> {
   final IssuesRepository repository;
 
   @override
-  Future<List<IssueEntity>> call() {
+  Future<List<IssueEntity>> call() async {
     try {
-      return repository.getIssues();
+      final visitedIssues = await repository.getVisitedIssues();
+      final issues = await repository.getIssues();
+
+      return issues
+          .map(
+            (issue) => issue.copyWith(
+                visited: visitedIssues.contains(issue.number.toString())),
+          )
+          .toList();
     } catch (_) {
       rethrow;
     }
