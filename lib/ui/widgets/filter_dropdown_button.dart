@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-enum FilterBy { clear, moreThan2Comments, lastHour, frameworkLabel }
+enum FilterBy {
+  clear,
+  moreThan2Comments,
+  lastHour,
+  frameworkLabel,
+}
 
 class FilterDropdownButton extends StatefulWidget {
   const FilterDropdownButton({super.key, required this.onTap});

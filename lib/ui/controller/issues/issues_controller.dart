@@ -80,53 +80,45 @@ class IssuesCubit extends Cubit<IssuesState> {
       );
 
   void sortIssues(SortBy sortBy) {
-    List<Issue> sortedIssues = List.of(state.issues ?? []);
+    List<Issue> issues = List.of(state.issues ?? []);
 
-    switch (sortBy) {
-      case SortBy.newest:
-        sortedIssues.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-        break;
-      case SortBy.oldest:
-        sortedIssues.sort((a, b) => a.createdAt.compareTo(b.createdAt));
-        break;
-      case SortBy.alphabet:
-        sortedIssues.sort(
+    final sortedIssues = switch (sortBy) {
+      SortBy.newest => issues
+        ..sort((a, b) => b.createdAt.compareTo(a.createdAt)),
+      SortBy.oldest => issues
+        ..sort((a, b) => a.createdAt.compareTo(b.createdAt)),
+      SortBy.alphabet => issues
+        ..sort(
           (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()),
-        );
-        break;
-    }
-    emit(state.copyWith(issues: sortedIssues, originalIssues: sortedIssues));
+        ),
+    };
+
+    _emit(issues: sortedIssues, originalIssues: sortedIssues);
   }
 
   void filterIssues(FilterBy filterBy) {
-    List<Issue>? filteredIssues = List.of(state.originalIssues ?? []);
+    List<Issue> issues = List.of(state.originalIssues ?? []);
 
-    switch (filterBy) {
-      case FilterBy.clear:
-        break;
-      case FilterBy.moreThan2Comments:
-        filteredIssues = filteredIssues
-            .where((issue) => issue.comments != null && issue.comments! >= 2)
-            .toList();
-        break;
-      case FilterBy.lastHour:
-        filteredIssues = filteredIssues
-            .where(
-              (issue) =>
-                  (DateTime.now().difference(issue.createdAt).inHours) <= 1,
-            )
-            .toList();
-        break;
-      case FilterBy.frameworkLabel:
-        filteredIssues = filteredIssues
-            .where(
-              (issue) =>
-                  issue.labels != null && issue.labels!.contains('framework'),
-            )
-            .toList();
-        break;
-    }
-    emit(state.copyWith(issues: filteredIssues));
+    final filteredIssues = switch (filterBy) {
+      FilterBy.clear => issues,
+      FilterBy.moreThan2Comments => issues
+          .where((issue) => issue.comments != null && issue.comments! >= 2)
+          .toList(),
+      FilterBy.lastHour => issues
+          .where(
+            (issue) =>
+                (DateTime.now().difference(issue.createdAt).inHours) <= 1,
+          )
+          .toList(),
+      FilterBy.frameworkLabel => issues
+          .where(
+            (issue) =>
+                issue.labels != null && issue.labels!.contains('framework'),
+          )
+          .toList(),
+    };
+
+    _emit(issues: filteredIssues);
   }
 
   @override
