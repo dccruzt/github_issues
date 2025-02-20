@@ -33,7 +33,7 @@ class IssueCubit extends Cubit<IssueState> {
   final String number;
 
   void setIssueAsVisited() {
-    manageVisitedIssuesUseCase.set(number.toString());
+    manageVisitedIssuesUseCase.set(number);
   }
 
   Future<void> getIssue() => getIssueUseCase

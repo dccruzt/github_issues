@@ -56,15 +56,11 @@ class IssuesCubit extends Cubit<IssuesState> {
     manageVisitedIssuesUseCase.set(number);
 
     final updatedIssues = state.issues?.map((issue) {
-      return issue.number.toString() == number
-          ? issue.copyWith(visited: true)
-          : issue;
+      return issue.number == number ? issue.copyWith(visited: true) : issue;
     }).toList();
 
     final updatedOriginalIssues = state.originalIssues?.map((issue) {
-      return issue.number.toString() == number
-          ? issue.copyWith(visited: true)
-          : issue;
+      return issue.number == number ? issue.copyWith(visited: true) : issue;
     }).toList();
 
     _emit(issues: updatedIssues, originalIssues: updatedOriginalIssues);
