@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_routes.dart';
-import '../controller/issues_controller.dart';
+import '../controller/issues/issues_controller.dart';
+import '../controller/issues/issues_state.dart';
 import '../widgets/issues_row_list.dart';
 import '../widgets/theme_switch.dart';
 import 'arguments/issue_arguments.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/design_system/spacings.dart';
-import '../controller/issues_controller.dart';
+import '../controller/issues/issues_controller.dart';
 import 'filter_dropdown_button.dart';
 import 'sort_dropdown_button.dart';
 

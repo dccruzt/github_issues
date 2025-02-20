@@ -4,7 +4,8 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/design_system/components/label_tag.dart';
 import '../../core/design_system/spacings.dart';
-import '../controller/issue_controller.dart';
+import '../controller/issue_details/issue_details_controller.dart';
+import '../controller/issue_details/issue_details_state.dart';
 import 'arguments/issue_arguments.dart';
 import 'error_screen.dart';
 import 'loading_screen.dart';
@@ -17,9 +18,9 @@ class IssueDetailsScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final args = ModalRoute.of(context)!.settings.arguments as IssueArguments;
 
-    return IssueCubitProvider(
+    return IssueDetailsCubitProvider(
       number: args.number,
-      child: BlocBuilder<IssueCubit, IssueState>(
+      child: BlocBuilder<IssueDetailsCubit, IssueDetailsState>(
         builder: (context, state) {
           if (state.error != null) {
             return const ErrorScreen();

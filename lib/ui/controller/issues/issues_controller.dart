@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../di/dependency_injection.dart';
-import '../../domain/entities/issue.dart';
-import '../../domain/use_cases/get_issues_use_case.dart';
-import '../../domain/use_cases/manage_visited_issues_use_case.dart';
-import '../widgets/filter_dropdown_button.dart';
-import '../widgets/sort_dropdown_button.dart';
+import '../../../di/dependency_injection.dart';
+import '../../../domain/entities/issue.dart';
+import '../../../domain/use_cases/get_issues_use_case.dart';
+import '../../../domain/use_cases/manage_visited_issues_use_case.dart';
+import '../../widgets/filter_dropdown_button.dart';
+import '../../widgets/sort_dropdown_button.dart';
+import 'issues_state.dart';
 
 class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
   IssuesCubitProvider({
@@ -134,26 +134,4 @@ class IssuesCubit extends Cubit<IssuesState> {
     _subscription?.cancel();
     return super.close();
   }
-}
-
-class IssuesState extends Equatable {
-  const IssuesState({this.issues, this.originalIssues, this.error});
-
-  final List<Issue>? issues;
-  final List<Issue>? originalIssues;
-  final Object? error;
-
-  IssuesState copyWith({
-    List<Issue>? issues,
-    List<Issue>? originalIssues,
-    Object? error,
-  }) =>
-      IssuesState(
-        issues: issues ?? this.issues,
-        originalIssues: originalIssues ?? this.originalIssues,
-        error: error ?? this.error,
-      );
-
-  @override
-  List<Object?> get props => [issues, originalIssues, error];
 }
