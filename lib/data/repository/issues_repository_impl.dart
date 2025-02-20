@@ -47,7 +47,7 @@ class IssuesRepositoryImpl implements IssuesRepository {
   }
 
   @override
-  setVisitedIssue(String issue) {
+  void setVisitedIssue(String issue) {
     try {
       localDataSource.setVisitedIssue(issue);
     } catch (_) {

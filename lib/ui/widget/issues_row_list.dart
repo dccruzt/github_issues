@@ -43,8 +43,9 @@ class IssuesRowList extends StatelessWidget {
           ),
         ...issues.map(
           (issue) {
-            final secondary =
-                '#${issue.number} opened ${timeago.format(issue.createdAt)} ago by ${issue.author}';
+            final secondary = '#${issue.number} '
+                'created ${timeago.format(issue.createdAt)} ago '
+                'by ${issue.author}';
 
             final textStyle = issue.visited
                 ? theme.textTheme.bodyLarge

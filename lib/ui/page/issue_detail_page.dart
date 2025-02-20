@@ -25,8 +25,9 @@ class IssueDetailPage extends StatelessWidget {
             return const ErrorPage();
           }
           if (state.issue != null) {
-            final description =
-                '#${state.issue!.number} opened ${timeago.format(state.issue!.createdAt)} ago by ${state.issue!.author}';
+            final description = '#${state.issue!.number} '
+                'created ${timeago.format(state.issue!.createdAt)} ago '
+                'by ${state.issue!.author}';
 
             return Scaffold(
               appBar: AppBar(),
@@ -52,14 +53,16 @@ class IssueDetailPage extends StatelessWidget {
                     Wrap(
                       children: [
                         ...state.issue!.labels!
-                            .map((e) => Padding(
-                                  padding: const EdgeInsets.all(x1),
-                                  child: LabelTag(label: e),
-                                ))
+                            .map(
+                              (e) => Padding(
+                                padding: const EdgeInsets.all(x1),
+                                child: LabelTag(label: e),
+                              ),
+                            )
                             .toList(growable: false),
                       ],
                     ),
-                  ]
+                  ],
                 ],
               ),
             );

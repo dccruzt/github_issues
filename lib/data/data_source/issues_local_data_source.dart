@@ -4,7 +4,7 @@ class IssuesLocalDataSource {
   static const _appTheme = 'APP_THEME';
   static const _visitedIssues = 'VISITED_ISSUES';
 
-  setDarkTheme(bool value) async {
+  void setDarkTheme(bool value) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool(_appTheme, value);
@@ -22,7 +22,7 @@ class IssuesLocalDataSource {
     }
   }
 
-  setVisitedIssue(String number) async {
+  void setVisitedIssue(String number) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 

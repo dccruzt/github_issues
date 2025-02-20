@@ -13,10 +13,11 @@ class LabelTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(x2),
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.blueAccent,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(x5))),
+        border: Border.all(
+          color: Colors.blueAccent,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(x5)),
+      ),
       child: Text(label, style: theme.textTheme.labelSmall),
     );
   }

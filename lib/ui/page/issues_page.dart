@@ -30,24 +30,29 @@ class IssuesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<IssuesCubit, IssuesState>(builder: (context, state) {
-      if (state.error != null) {
-        return const ErrorPage();
-      }
-      if (state.issues != null) {
-        return IssuesRowList(
-          issues: state.issues!,
-          onTap: (number) => _onTap(context, number),
-        );
-      }
-      return const LoadingPage();
-    });
+    return BlocBuilder<IssuesCubit, IssuesState>(
+      builder: (context, state) {
+        if (state.error != null) {
+          return const ErrorPage();
+        }
+        if (state.issues != null) {
+          return IssuesRowList(
+            issues: state.issues!,
+            onTap: (number) => _onTap(context, number),
+          );
+        }
+        return const LoadingPage();
+      },
+    );
   }
 
   void _onTap(BuildContext context, String number) {
     IssuesCubitProvider.of(context).setVisitedIssue(number.toString());
 
-    Navigator.pushNamed(context, AppRoutes.issueDetail,
-        arguments: IssueArguments(number: number));
+    Navigator.pushNamed(
+      context,
+      AppRoutes.issueDetail,
+      arguments: IssueArguments(number: number),
+    );
   }
 }

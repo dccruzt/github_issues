@@ -18,11 +18,13 @@ Future<void> initDependencies() async {
 
   di.registerFactory(() => IssuesLocalDataSource());
 
-  di.registerFactory<IssuesRepository>(() => IssuesRepositoryImpl(
-        remoteDataSource: di(),
-        localDataSource: di(),
-        mapper: di(),
-      ));
+  di.registerFactory<IssuesRepository>(
+    () => IssuesRepositoryImpl(
+      remoteDataSource: di(),
+      localDataSource: di(),
+      mapper: di(),
+    ),
+  );
 
   di.registerFactory(() => GetIssuesUseCase(repository: di()));
 

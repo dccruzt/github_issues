@@ -19,7 +19,8 @@ class GetIssuesUseCase implements UseCase<List<IssueEntity>> {
       return issues
           .map(
             (issue) => issue.copyWith(
-                visited: visitedIssues.contains(issue.number.toString())),
+              visited: visitedIssues.contains(issue.number.toString()),
+            ),
           )
           .toList();
     } catch (_) {

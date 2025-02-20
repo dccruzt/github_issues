@@ -1,4 +1,4 @@
-import 'package:github_issues/domain/repository/issues_repository.dart';
+import '../repository/issues_repository.dart';
 
 class ManageVisitedIssuesUseCase {
   ManageVisitedIssuesUseCase({

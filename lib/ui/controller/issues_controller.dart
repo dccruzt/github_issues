@@ -19,11 +19,12 @@ class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
     Create<IssuesCubit>? create,
     GetIssuesUseCase? useCase,
   }) : super(
-            create: create ??
-                (context) => IssuesCubit(
-                      getIssuesUseCase: di(),
-                      manageVisitedIssuesUseCase: di(),
-                    )..init());
+          create: create ??
+              (context) => IssuesCubit(
+                    getIssuesUseCase: di(),
+                    manageVisitedIssuesUseCase: di(),
+                  )..init(),
+        );
 
   static IssuesCubit of(BuildContext context) =>
       BlocProvider.of<IssuesCubit>(context);
@@ -94,7 +95,8 @@ class IssuesCubit extends Cubit<IssuesState> {
         break;
       case SortBy.alphabet:
         sortedIssues.sort(
-            (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
+          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()),
+        );
         break;
     }
     emit(state.copyWith(issues: sortedIssues, originalIssues: sortedIssues));
@@ -113,14 +115,18 @@ class IssuesCubit extends Cubit<IssuesState> {
         break;
       case FilterBy.lastHour:
         filteredIssues = filteredIssues
-            .where((issue) =>
-                (DateTime.now().difference(issue.createdAt).inHours) <= 1)
+            .where(
+              (issue) =>
+                  (DateTime.now().difference(issue.createdAt).inHours) <= 1,
+            )
             .toList();
         break;
       case FilterBy.frameworkLabel:
         filteredIssues = filteredIssues
-            .where((issue) =>
-                issue.labels != null && issue.labels!.contains('framework'))
+            .where(
+              (issue) =>
+                  issue.labels != null && issue.labels!.contains('framework'),
+            )
             .toList();
         break;
     }

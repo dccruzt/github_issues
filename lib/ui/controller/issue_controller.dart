@@ -11,13 +11,14 @@ import '../../domain/use_case/manage_visited_issues_use_case.dart';
 class IssueCubitProvider extends BlocProvider<IssueCubit> {
   IssueCubitProvider({super.key, super.child, required String number})
       : super(
-            create: (context) => IssueCubit(
-                  getIssueUseCase: di(),
-                  manageVisitedIssuesUseCase: di(),
-                  number: number,
-                )
-                  ..setIssueAsVisited()
-                  ..getIssue());
+          create: (context) => IssueCubit(
+            getIssueUseCase: di(),
+            manageVisitedIssuesUseCase: di(),
+            number: number,
+          )
+            ..setIssueAsVisited()
+            ..getIssue(),
+        );
 }
 
 class IssueCubit extends Cubit<IssueState> {
