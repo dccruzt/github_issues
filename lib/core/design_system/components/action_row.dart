@@ -4,7 +4,7 @@ import '../spacings.dart';
 
 class ActionRow extends StatelessWidget {
   const ActionRow({
-    Key? key,
+    super.key,
     this.leading,
     this.trailing,
     this.primary,
@@ -12,7 +12,7 @@ class ActionRow extends StatelessWidget {
     this.title,
     this.onTap,
     this.hasDivider = true,
-  }) : super(key: key);
+  });
 
   final Widget? leading;
   final Widget? trailing;

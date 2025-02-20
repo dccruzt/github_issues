@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/data_source/issues_local_data_source.dart';
+import '../data/data_sources/issues_local_data_source.dart';
 import '../di/dependency_injection.dart';
 
 class ThemeProvider with ChangeNotifier {

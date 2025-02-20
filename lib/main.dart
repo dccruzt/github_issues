@@ -5,8 +5,8 @@ import 'core/app_routes.dart';
 import 'core/design_system/app_themes.dart';
 import 'core/theme_provider.dart';
 import 'di/dependency_injection.dart';
-import 'ui/page/issue_detail_page.dart';
-import 'ui/page/issues_page.dart';
+import 'ui/screens/issue_details_screen.dart';
+import 'ui/screens/issues_screen.dart';
 
 void main() {
   _setupDependencies();
@@ -45,9 +45,9 @@ class _MyAppState extends State<MyApp> {
         builder: (context, value, child) => MaterialApp(
           title: 'My App',
           theme: themeProvider.isDark ? darkAppThemeData : lightAppThemeData,
-          home: const IssuesPage(),
+          home: const IssuesScreen(),
           routes: {
-            AppRoutes.issueDetail: (context) => const IssueDetailPage(),
+            AppRoutes.issueDetail: (context) => const IssueDetailsScreen(),
           },
         ),
       ),
