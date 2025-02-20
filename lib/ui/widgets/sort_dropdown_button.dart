@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum SortBy { newest, oldest, alphabet }
 
 class SortDropdownButton extends StatefulWidget {
-  const SortDropdownButton({Key? key, required this.onTap}) : super(key: key);
+  const SortDropdownButton({super.key, required this.onTap});
 
   final ValueChanged<SortBy> onTap;
 

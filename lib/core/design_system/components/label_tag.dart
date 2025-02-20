@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../spacings.dart';
 
 class LabelTag extends StatelessWidget {
-  const LabelTag({Key? key, required this.label}) : super(key: key);
+  const LabelTag({super.key, required this.label});
 
   final String label;
 

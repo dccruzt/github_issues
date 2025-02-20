@@ -10,7 +10,7 @@ import 'error_screen.dart';
 import 'loading_screen.dart';
 
 class IssuesScreen extends StatelessWidget {
-  const IssuesScreen({Key? key}) : super(key: key);
+  const IssuesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class IssuesScreen extends StatelessWidget {
 }
 
 class IssuesList extends StatelessWidget {
-  const IssuesList({Key? key}) : super(key: key);
+  const IssuesList({super.key});
 
   @override
   Widget build(BuildContext context) {

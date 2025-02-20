@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/theme_provider.dart';
 
 class ThemeSwitch extends StatelessWidget {
-  const ThemeSwitch({Key? key}) : super(key: key);
+  const ThemeSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {

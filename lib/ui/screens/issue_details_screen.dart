@@ -10,7 +10,7 @@ import 'error_screen.dart';
 import 'loading_screen.dart';
 
 class IssueDetailsScreen extends StatelessWidget {
-  const IssueDetailsScreen({Key? key}) : super(key: key);
+  const IssueDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,12 @@ class IssueDetailsScreen extends StatelessWidget {
                     const SizedBox(height: x4),
                     Wrap(
                       children: [
-                        ...state.issue!.labels!
-                            .map(
-                              (e) => Padding(
-                                padding: const EdgeInsets.all(x1),
-                                child: LabelTag(label: e),
-                              ),
-                            )
-                            .toList(growable: false),
+                        ...state.issue!.labels!.map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.all(x1),
+                            child: LabelTag(label: e),
+                          ),
+                        ),
                       ],
                     ),
                   ],

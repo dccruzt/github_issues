@@ -8,10 +8,10 @@ import 'sort_filter_row.dart';
 
 class IssuesRowList extends StatelessWidget {
   const IssuesRowList({
-    Key? key,
+    super.key,
     required this.issues,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final List<Issue> issues;
   final ValueChanged<String> onTap;
@@ -66,7 +66,7 @@ class IssuesRowList extends StatelessWidget {
               onTap: () => onTap.call(issue.number),
             );
           },
-        ).toList(growable: false),
+        ),
       ],
     );
   }

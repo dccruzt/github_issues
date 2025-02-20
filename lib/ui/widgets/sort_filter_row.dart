@@ -6,7 +6,7 @@ import 'filter_dropdown_button.dart';
 import 'sort_dropdown_button.dart';
 
 class SortFilterRow extends StatelessWidget {
-  const SortFilterRow({Key? key}) : super(key: key);
+  const SortFilterRow({super.key});
 
   @override
   Widget build(BuildContext context) {
