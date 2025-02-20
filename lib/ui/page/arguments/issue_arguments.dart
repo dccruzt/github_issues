@@ -1,5 +1,5 @@
 class IssueArguments {
-  IssueArguments({required this.number});
+  const IssueArguments({required this.number});
 
-  int number;
+  final String number;
 }

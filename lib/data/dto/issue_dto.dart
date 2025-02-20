@@ -1,5 +1,5 @@
 class IssueDTO {
-  IssueDTO({
+  const IssueDTO({
     required this.id,
     required this.number,
     required this.title,

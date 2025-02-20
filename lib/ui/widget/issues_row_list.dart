@@ -14,7 +14,7 @@ class IssuesRowList extends StatelessWidget {
   }) : super(key: key);
 
   final List<IssueEntity> issues;
-  final ValueChanged<int> onTap;
+  final ValueChanged<String> onTap;
 
   @override
   Widget build(BuildContext context) {

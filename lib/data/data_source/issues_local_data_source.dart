@@ -22,14 +22,14 @@ class IssuesLocalDataSource {
     }
   }
 
-  setVisitedIssue(String issue) async {
+  setVisitedIssue(String number) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       final issues = prefs.getStringList(_visitedIssues) ?? [];
 
-      if (!issues.contains(issue)) {
-        prefs.setStringList(_visitedIssues, issues..add(issue));
+      if (!issues.contains(number)) {
+        prefs.setStringList(_visitedIssues, issues..add(number));
       }
     } catch (_) {
       rethrow;

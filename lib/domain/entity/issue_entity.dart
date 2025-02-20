@@ -14,7 +14,7 @@ class IssueEntity extends Equatable {
   });
 
   final int id;
-  final int number;
+  final String number;
   final String title;
   final DateTime createdAt;
   final String author;
@@ -25,7 +25,7 @@ class IssueEntity extends Equatable {
 
   IssueEntity copyWith({
     int? id,
-    int? number,
+    String? number,
     String? title,
     DateTime? createdAt,
     String? author,

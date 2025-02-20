@@ -15,7 +15,7 @@ void main() {
   List<IssueEntity> issues = [
     IssueEntity(
       id: 1,
-      number: 1090,
+      number: '1090',
       title: 'Flutter issue #1',
       createdAt: DateTime.now(),
       author: 'dccruzt',
@@ -23,7 +23,7 @@ void main() {
     ),
     IssueEntity(
       id: 2,
-      number: 1091,
+      number: '1091',
       title: 'Flutter issue #2',
       createdAt: DateTime.now(),
       author: 'user.test',

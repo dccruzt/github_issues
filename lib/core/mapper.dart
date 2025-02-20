@@ -9,7 +9,7 @@ class MapperImpl implements Mapper {
   @override
   IssueEntity mapToIssueEntity(IssueDTO from) => IssueEntity(
         id: from.id,
-        number: from.number,
+        number: from.number.toString(),
         title: from.title,
         createdAt: DateTime.tryParse(from.createdAt) ?? DateTime.now(),
         author: from.author,

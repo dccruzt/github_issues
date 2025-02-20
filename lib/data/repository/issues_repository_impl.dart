@@ -28,7 +28,7 @@ class IssuesRepositoryImpl implements IssuesRepository {
   }
 
   @override
-  Future<IssueEntity> getIssue(int number) async {
+  Future<IssueEntity> getIssue(String number) async {
     try {
       final issue = await remoteDataSource.getIssue(number);
       return mapper.mapToIssueEntity(issue);

@@ -51,7 +51,7 @@ class MockIssuesRepository extends _i1.Mock implements _i3.IssuesRepository {
       ) as _i4.Future<List<_i2.IssueEntity>>);
 
   @override
-  _i4.Future<_i2.IssueEntity> getIssue(int? number) => (super.noSuchMethod(
+  _i4.Future<_i2.IssueEntity> getIssue(String? number) => (super.noSuchMethod(
         Invocation.method(
           #getIssue,
           [number],

@@ -22,7 +22,7 @@ class IssuesRemoteDataSource {
     }
   }
 
-  Future<IssueDTO> getIssue(int number) async {
+  Future<IssueDTO> getIssue(String number) async {
     try {
       final url =
           Uri.https('api.github.com', 'repos/flutter/flutter/issues/$number');

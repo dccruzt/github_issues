@@ -23,7 +23,7 @@ void main() {
 
   IssueEntity issue1 = IssueEntity(
     id: 1,
-    number: 1090,
+    number: '1090',
     title: 'Flutter issue #1',
     createdAt: DateTime.now(),
     author: 'dccruzt',
@@ -32,7 +32,7 @@ void main() {
 
   IssueEntity issue2 = IssueEntity(
     id: 2,
-    number: 1091,
+    number: '1091',
     title: 'Flutter issue #2',
     createdAt: DateTime.parse('2023-03-10'),
     author: 'user.test',
@@ -41,7 +41,7 @@ void main() {
 
   IssueEntity issue3 = IssueEntity(
     id: 3,
-    number: 1092,
+    number: '1092',
     title: 'Flutter issue #3',
     createdAt: DateTime.parse('2022-03-10'),
     author: 'user.test.2',

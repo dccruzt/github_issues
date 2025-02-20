@@ -44,7 +44,7 @@ class IssuesScreen extends StatelessWidget {
     });
   }
 
-  void _onTap(BuildContext context, int number) {
+  void _onTap(BuildContext context, String number) {
     IssuesCubitProvider.of(context).setVisitedIssue(number.toString());
 
     Navigator.pushNamed(context, AppRoutes.issueDetail,

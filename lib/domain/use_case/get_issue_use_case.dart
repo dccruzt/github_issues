@@ -5,13 +5,13 @@ abstract class UseCase<Arg, Result> {
   Future<Result> call(Arg arg);
 }
 
-class GetIssueUseCase implements UseCase<int, IssueEntity> {
+class GetIssueUseCase implements UseCase<String, IssueEntity> {
   GetIssueUseCase({required this.repository});
 
   final IssuesRepository repository;
 
   @override
-  Future<IssueEntity> call(int arg) {
+  Future<IssueEntity> call(String arg) {
     try {
       return repository.getIssue(arg);
     } catch (_) {

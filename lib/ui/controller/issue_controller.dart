@@ -9,7 +9,7 @@ import '../../domain/use_case/get_issue_use_case.dart';
 import '../../domain/use_case/manage_visited_issues_use_case.dart';
 
 class IssueCubitProvider extends BlocProvider<IssueCubit> {
-  IssueCubitProvider({super.key, super.child, required int number})
+  IssueCubitProvider({super.key, super.child, required String number})
       : super(
             create: (context) => IssueCubit(
                   getIssueUseCase: di(),
@@ -29,7 +29,7 @@ class IssueCubit extends Cubit<IssueState> {
 
   final GetIssueUseCase getIssueUseCase;
   final ManageVisitedIssuesUseCase manageVisitedIssuesUseCase;
-  final int number;
+  final String number;
 
   void setIssueAsVisited() {
     manageVisitedIssuesUseCase.set(number.toString());
