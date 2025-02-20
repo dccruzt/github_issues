@@ -1,8 +1,8 @@
 import '../../core/mapper.dart';
-import '../../domain/entity/issue_entity.dart';
-import '../../domain/repository/issues_repository.dart';
-import '../data_source/issues_local_data_source.dart';
-import '../data_source/issues_remote_data_source.dart';
+import '../../domain/entities/issue.dart';
+import '../../domain/repositories/issues_repository.dart';
+import '../data_sources/issues_local_data_source.dart';
+import '../data_sources/issues_remote_data_source.dart';
 
 class IssuesRepositoryImpl implements IssuesRepository {
   IssuesRepositoryImpl({
@@ -16,7 +16,7 @@ class IssuesRepositoryImpl implements IssuesRepository {
   final Mapper mapper;
 
   @override
-  Future<List<IssueEntity>> getIssues() async {
+  Future<List<Issue>> getIssues() async {
     try {
       final issues = await remoteDataSource.getIssues();
       return issues
@@ -28,7 +28,7 @@ class IssuesRepositoryImpl implements IssuesRepository {
   }
 
   @override
-  Future<IssueEntity> getIssue(String number) async {
+  Future<Issue> getIssue(String number) async {
     try {
       final issue = await remoteDataSource.getIssue(number);
       return mapper.mapToIssueEntity(issue);

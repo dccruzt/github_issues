@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class IssueEntity extends Equatable {
-  const IssueEntity({
+class Issue extends Equatable {
+  const Issue({
     required this.id,
     required this.number,
     required this.title,
@@ -23,7 +23,7 @@ class IssueEntity extends Equatable {
   final List<String>? labels;
   final bool visited;
 
-  IssueEntity copyWith({
+  Issue copyWith({
     int? id,
     String? number,
     String? title,
@@ -34,7 +34,7 @@ class IssueEntity extends Equatable {
     List<String>? labels,
     bool? visited,
   }) =>
-      IssueEntity(
+      Issue(
         id: id ?? this.id,
         number: number ?? this.number,
         title: title ?? this.title,

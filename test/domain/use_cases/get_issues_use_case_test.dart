@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:github_issues/domain/entity/issue_entity.dart';
-import 'package:github_issues/domain/repository/issues_repository.dart';
-import 'package:github_issues/domain/use_case/get_issues_use_case.dart';
+import 'package:github_issues/domain/entities/issue.dart';
+import 'package:github_issues/domain/repositories/issues_repository.dart';
+import 'package:github_issues/domain/use_cases/get_issues_use_case.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -12,8 +12,8 @@ void main() {
   final repository = MockIssuesRepository();
   final useCase = GetIssuesUseCase(repository: repository);
 
-  List<IssueEntity> issues = [
-    IssueEntity(
+  List<Issue> issues = [
+    Issue(
       id: 1,
       number: '1090',
       title: 'Flutter issue #1',
@@ -21,7 +21,7 @@ void main() {
       author: 'dccruzt',
       visited: true,
     ),
-    IssueEntity(
+    Issue(
       id: 2,
       number: '1091',
       title: 'Flutter issue #2',

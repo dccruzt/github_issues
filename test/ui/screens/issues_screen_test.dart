@@ -2,14 +2,14 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_issues/core/design_system/components/action_row.dart';
-import 'package:github_issues/domain/entity/issue_entity.dart';
-import 'package:github_issues/domain/use_case/get_issues_use_case.dart';
+import 'package:github_issues/domain/entities/issue.dart';
+import 'package:github_issues/domain/use_cases/get_issues_use_case.dart';
 import 'package:github_issues/ui/controller/issues_controller.dart';
-import 'package:github_issues/ui/page/issues_page.dart';
+import 'package:github_issues/ui/screens/issues_screen.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'issues_page_test.mocks.dart';
+import 'issues_screen_test.mocks.dart';
 
 class MockIssuesCubit extends MockCubit<IssuesState> implements IssuesCubit {}
 
@@ -29,8 +29,8 @@ void main() {
     registerFallbackValue(IssuesStateFake());
   });
 
-  List<IssueEntity> issues = [
-    IssueEntity(
+  List<Issue> issues = [
+    Issue(
       id: 1,
       number: '1090',
       title: 'Flutter issue #1',
@@ -38,7 +38,7 @@ void main() {
       author: 'dccruzt',
       visited: false,
     ),
-    IssueEntity(
+    Issue(
       id: 2,
       number: '1091',
       title: 'Flutter issue #2',
@@ -63,7 +63,7 @@ void main() {
               child: IssuesCubitProvider(
                 create: (context) => issuesCubit,
                 useCase: getIssuesUseCase,
-                child: const IssuesScreen(),
+                child: const IssuesList(),
               ),
             ),
           ),

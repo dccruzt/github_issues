@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/dependency_injection.dart';
-import '../../domain/entity/issue_entity.dart';
-import '../../domain/use_case/get_issue_use_case.dart';
-import '../../domain/use_case/manage_visited_issues_use_case.dart';
+import '../../domain/entities/issue.dart';
+import '../../domain/use_cases/get_issue_use_case.dart';
+import '../../domain/use_cases/manage_visited_issues_use_case.dart';
 
 class IssueCubitProvider extends BlocProvider<IssueCubit> {
   IssueCubitProvider({super.key, super.child, required String number})
@@ -45,11 +45,11 @@ class IssueCubit extends Cubit<IssueState> {
 class IssueState extends Equatable {
   const IssueState({this.issue, this.error});
 
-  final IssueEntity? issue;
+  final Issue? issue;
   final Object? error;
 
   IssueState copyWith({
-    IssueEntity? issue,
+    Issue? issue,
     Object? error,
   }) =>
       IssueState(

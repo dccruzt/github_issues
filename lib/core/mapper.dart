@@ -1,13 +1,13 @@
-import '../data/dto/issue_dto.dart';
-import '../domain/entity/issue_entity.dart';
+import '../data/dtos/issue_dto.dart';
+import '../domain/entities/issue.dart';
 
 mixin Mapper {
-  IssueEntity mapToIssueEntity(IssueDTO from);
+  Issue mapToIssueEntity(IssueDTO from);
 }
 
 class MapperImpl implements Mapper {
   @override
-  IssueEntity mapToIssueEntity(IssueDTO from) => IssueEntity(
+  Issue mapToIssueEntity(IssueDTO from) => Issue(
         id: from.id,
         number: from.number.toString(),
         title: from.title,

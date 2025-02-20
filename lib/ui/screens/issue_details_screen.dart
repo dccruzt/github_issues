@@ -6,11 +6,11 @@ import '../../core/design_system/components/label_tag.dart';
 import '../../core/design_system/spacings.dart';
 import '../controller/issue_controller.dart';
 import 'arguments/issue_arguments.dart';
-import 'error_page.dart';
-import 'loading_page.dart';
+import 'error_screen.dart';
+import 'loading_screen.dart';
 
-class IssueDetailPage extends StatelessWidget {
-  const IssueDetailPage({Key? key}) : super(key: key);
+class IssueDetailsScreen extends StatelessWidget {
+  const IssueDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class IssueDetailPage extends StatelessWidget {
       child: BlocBuilder<IssueCubit, IssueState>(
         builder: (context, state) {
           if (state.error != null) {
-            return const ErrorPage();
+            return const ErrorScreen();
           }
           if (state.issue != null) {
             final description = '#${state.issue!.number} '
@@ -67,7 +67,7 @@ class IssueDetailPage extends StatelessWidget {
               ),
             );
           }
-          return const LoadingPage();
+          return const LoadingScreen();
         },
       ),
     );

@@ -5,10 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:github_issues/domain/entity/issue_entity.dart' as _i5;
-import 'package:github_issues/domain/repository/issues_repository.dart' as _i2;
-import 'package:github_issues/domain/use_case/get_issues_use_case.dart' as _i3;
-import 'package:github_issues/domain/use_case/manage_visited_issues_use_case.dart'
+import 'package:github_issues/domain/entities/issue.dart' as _i5;
+import 'package:github_issues/domain/repositories/issues_repository.dart'
+    as _i2;
+import 'package:github_issues/domain/use_cases/get_issues_use_case.dart' as _i3;
+import 'package:github_issues/domain/use_cases/manage_visited_issues_use_case.dart'
     as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -54,14 +55,13 @@ class MockGetIssuesUseCase extends _i1.Mock implements _i3.GetIssuesUseCase {
       ) as _i2.IssuesRepository);
 
   @override
-  _i4.Future<List<_i5.IssueEntity>> call() => (super.noSuchMethod(
+  _i4.Future<List<_i5.Issue>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue:
-            _i4.Future<List<_i5.IssueEntity>>.value(<_i5.IssueEntity>[]),
-      ) as _i4.Future<List<_i5.IssueEntity>>);
+        returnValue: _i4.Future<List<_i5.Issue>>.value(<_i5.Issue>[]),
+      ) as _i4.Future<List<_i5.Issue>>);
 }
 
 /// A class which mocks [ManageVisitedIssuesUseCase].

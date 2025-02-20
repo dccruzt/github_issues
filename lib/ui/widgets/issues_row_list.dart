@@ -3,7 +3,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/design_system/components/action_row.dart';
 import '../../core/design_system/spacings.dart';
-import '../../domain/entity/issue_entity.dart';
+import '../../domain/entities/issue.dart';
 import 'sort_filter_row.dart';
 
 class IssuesRowList extends StatelessWidget {
@@ -13,7 +13,7 @@ class IssuesRowList extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  final List<IssueEntity> issues;
+  final List<Issue> issues;
   final ValueChanged<String> onTap;
 
   @override

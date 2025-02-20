@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../di/dependency_injection.dart';
-import '../../domain/entity/issue_entity.dart';
-import '../../domain/use_case/get_issues_use_case.dart';
-import '../../domain/use_case/manage_visited_issues_use_case.dart';
-import '../widget/filter_dropdown_button.dart';
-import '../widget/sort_dropdown_button.dart';
+import '../../domain/entities/issue.dart';
+import '../../domain/use_cases/get_issues_use_case.dart';
+import '../../domain/use_cases/manage_visited_issues_use_case.dart';
+import '../widgets/filter_dropdown_button.dart';
+import '../widgets/sort_dropdown_button.dart';
 
 class IssuesCubitProvider extends BlocProvider<IssuesCubit> {
   IssuesCubitProvider({
@@ -67,8 +67,8 @@ class IssuesCubit extends Cubit<IssuesState> {
   }
 
   void _emit({
-    List<IssueEntity>? issues,
-    List<IssueEntity>? originalIssues,
+    List<Issue>? issues,
+    List<Issue>? originalIssues,
     Object? error,
   }) =>
       emit(
@@ -80,7 +80,7 @@ class IssuesCubit extends Cubit<IssuesState> {
       );
 
   void sortIssues(SortBy sortBy) {
-    List<IssueEntity> sortedIssues = List.of(state.issues ?? []);
+    List<Issue> sortedIssues = List.of(state.issues ?? []);
 
     switch (sortBy) {
       case SortBy.newest:
@@ -99,7 +99,7 @@ class IssuesCubit extends Cubit<IssuesState> {
   }
 
   void filterIssues(FilterBy filterBy) {
-    List<IssueEntity>? filteredIssues = List.of(state.originalIssues ?? []);
+    List<Issue>? filteredIssues = List.of(state.originalIssues ?? []);
 
     switch (filterBy) {
       case FilterBy.clear:
@@ -139,13 +139,13 @@ class IssuesCubit extends Cubit<IssuesState> {
 class IssuesState extends Equatable {
   const IssuesState({this.issues, this.originalIssues, this.error});
 
-  final List<IssueEntity>? issues;
-  final List<IssueEntity>? originalIssues;
+  final List<Issue>? issues;
+  final List<Issue>? originalIssues;
   final Object? error;
 
   IssuesState copyWith({
-    List<IssueEntity>? issues,
-    List<IssueEntity>? originalIssues,
+    List<Issue>? issues,
+    List<Issue>? originalIssues,
     Object? error,
   }) =>
       IssuesState(

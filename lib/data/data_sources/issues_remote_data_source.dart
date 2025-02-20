@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../dto/issue_dto.dart';
+import '../dtos/issue_dto.dart';
 
 class IssuesRemoteDataSource {
   Future<List<IssueDTO>> getIssues() async {

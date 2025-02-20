@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_routes.dart';
 import '../controller/issues_controller.dart';
-import '../widget/issues_row_list.dart';
-import '../widget/theme_switch.dart';
+import '../widgets/issues_row_list.dart';
+import '../widgets/theme_switch.dart';
 import 'arguments/issue_arguments.dart';
-import 'error_page.dart';
-import 'loading_page.dart';
+import 'error_screen.dart';
+import 'loading_screen.dart';
 
-class IssuesPage extends StatelessWidget {
-  const IssuesPage({Key? key}) : super(key: key);
+class IssuesScreen extends StatelessWidget {
+  const IssuesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +19,21 @@ class IssuesPage extends StatelessWidget {
         actions: const [ThemeSwitch()],
       ),
       body: IssuesCubitProvider(
-        child: const IssuesScreen(),
+        child: const IssuesList(),
       ),
     );
   }
 }
 
-class IssuesScreen extends StatelessWidget {
-  const IssuesScreen({Key? key}) : super(key: key);
+class IssuesList extends StatelessWidget {
+  const IssuesList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<IssuesCubit, IssuesState>(
       builder: (context, state) {
         if (state.error != null) {
-          return const ErrorPage();
+          return const ErrorScreen();
         }
         if (state.issues != null) {
           return IssuesRowList(
@@ -41,7 +41,7 @@ class IssuesScreen extends StatelessWidget {
             onTap: (number) => _onTap(context, number),
           );
         }
-        return const LoadingPage();
+        return const LoadingScreen();
       },
     );
   }

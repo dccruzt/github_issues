@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:github_issues/domain/entity/issue_entity.dart';
-import 'package:github_issues/domain/use_case/get_issues_use_case.dart';
-import 'package:github_issues/domain/use_case/manage_visited_issues_use_case.dart';
+import 'package:github_issues/domain/entities/issue.dart';
+import 'package:github_issues/domain/use_cases/get_issues_use_case.dart';
+import 'package:github_issues/domain/use_cases/manage_visited_issues_use_case.dart';
 import 'package:github_issues/ui/controller/issues_controller.dart';
-import 'package:github_issues/ui/widget/filter_dropdown_button.dart';
-import 'package:github_issues/ui/widget/sort_dropdown_button.dart';
+import 'package:github_issues/ui/widgets/filter_dropdown_button.dart';
+import 'package:github_issues/ui/widgets/sort_dropdown_button.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -21,7 +21,7 @@ void main() {
     manageVisitedIssuesUseCase = MockManageVisitedIssuesUseCase();
   });
 
-  IssueEntity issue1 = IssueEntity(
+  Issue issue1 = Issue(
     id: 1,
     number: '1090',
     title: 'Flutter issue #1',
@@ -30,7 +30,7 @@ void main() {
     visited: false,
   );
 
-  IssueEntity issue2 = IssueEntity(
+  Issue issue2 = Issue(
     id: 2,
     number: '1091',
     title: 'Flutter issue #2',
@@ -39,7 +39,7 @@ void main() {
     visited: false,
   );
 
-  IssueEntity issue3 = IssueEntity(
+  Issue issue3 = Issue(
     id: 3,
     number: '1092',
     title: 'Flutter issue #3',
@@ -48,7 +48,7 @@ void main() {
     visited: false,
   );
 
-  List<IssueEntity> issues = [issue1, issue2, issue3];
+  List<Issue> issues = [issue1, issue2, issue3];
 
   var error = Error();
 
