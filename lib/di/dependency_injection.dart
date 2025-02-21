@@ -7,7 +7,7 @@ import '../data/repositories/issues_repository_impl.dart';
 import '../domain/data_sources/issues_local_data_source.dart';
 import '../domain/data_sources/issues_remote_data_source.dart';
 import '../domain/repositories/issues_repository.dart';
-import '../domain/use_cases/get_issue_use_case.dart';
+import '../domain/use_cases/get_issue_details_use_case.dart';
 import '../domain/use_cases/get_issues_use_case.dart';
 import '../domain/use_cases/manage_visited_issues_use_case.dart';
 
@@ -34,5 +34,5 @@ Future<void> initDependencies() async {
 
   di.registerFactory(() => GetIssueDetailsUseCase(repository: di()));
 
-  di.registerLazySingleton(() => ManageVisitedIssuesUseCase(repository: di()));
+  di.registerFactory(() => ManageVisitedIssuesUseCase(repository: di()));
 }

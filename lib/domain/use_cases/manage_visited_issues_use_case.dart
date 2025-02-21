@@ -1,9 +1,7 @@
 import '../repositories/issues_repository.dart';
 
 class ManageVisitedIssuesUseCase {
-  ManageVisitedIssuesUseCase({
-    required this.repository,
-  });
+  const ManageVisitedIssuesUseCase({required this.repository});
 
   final IssuesRepository repository;
 
