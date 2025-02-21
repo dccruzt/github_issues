@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/data_sources/issues_local_data_source.dart';
 import '../di/dependency_injection.dart';
+import '../domain/data_sources/issues_local_data_source.dart';
 
 class ThemeProvider with ChangeNotifier {
   IssuesLocalDataSource localDataSource = di();

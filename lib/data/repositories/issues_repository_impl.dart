@@ -1,8 +1,8 @@
 import '../../core/mapper.dart';
+import '../../domain/data_sources/issues_local_data_source.dart';
+import '../../domain/data_sources/issues_remote_data_source.dart';
 import '../../domain/entities/issue.dart';
 import '../../domain/repositories/issues_repository.dart';
-import '../data_sources/issues_local_data_source.dart';
-import '../data_sources/issues_remote_data_source.dart';
 
 class IssuesRepositoryImpl implements IssuesRepository {
   IssuesRepositoryImpl({

@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../../domain/data_sources/issues_remote_data_source.dart';
 import '../dtos/issue_dto.dart';
 
-class IssuesRemoteDataSource {
+class IssuesRemoteDataSourceImpl implements IssuesRemoteDataSource {
   String get _url => 'api.github.com';
 
+  @override
   Future<List<IssueDTO>> getIssues() async {
     try {
       final url = Uri.https(
@@ -29,6 +31,7 @@ class IssuesRemoteDataSource {
     }
   }
 
+  @override
   Future<IssueDTO> getIssue(String number) async {
     try {
       final url = Uri.https(_url, 'repos/flutter/flutter/issues/$number');
