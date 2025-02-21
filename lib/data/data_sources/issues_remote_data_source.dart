@@ -5,9 +5,16 @@ import 'package:http/http.dart' as http;
 import '../dtos/issue_dto.dart';
 
 class IssuesRemoteDataSource {
+  String get _url => 'api.github.com';
+
   Future<List<IssueDTO>> getIssues() async {
     try {
-      final url = Uri.https('api.github.com', 'repos/flutter/flutter/issues');
+      final url = Uri.https(
+        _url,
+        'repos/flutter/flutter/issues',
+        {'per_page': '10'},
+      );
+
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -24,8 +31,7 @@ class IssuesRemoteDataSource {
 
   Future<IssueDTO> getIssue(String number) async {
     try {
-      final url =
-          Uri.https('api.github.com', 'repos/flutter/flutter/issues/$number');
+      final url = Uri.https(_url, 'repos/flutter/flutter/issues/$number');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
