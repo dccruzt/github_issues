@@ -15,8 +15,11 @@ class IssuesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
+        title: Text('Github issues', style: theme.textTheme.titleLarge),
         actions: const [ThemeSwitch()],
       ),
       body: IssuesCubitProvider(

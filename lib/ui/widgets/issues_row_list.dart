@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/design_system/components/action_row.dart';
-import '../../core/design_system/spacings.dart';
 import '../../domain/entities/issue.dart';
 import 'sort_filter_row.dart';
 
@@ -22,25 +21,8 @@ class IssuesRowList extends StatelessWidget {
 
     return ListView(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: x4, bottom: x2),
-          child: Text('Github issues', style: theme.textTheme.titleLarge),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: x4),
-          child: SortFilterRow(),
-        ),
-        if (issues.isEmpty)
-          SizedBox(
-            height: 400,
-            child: Center(
-              child: Text(
-                'No flutter issue found',
-                style: theme.textTheme.titleMedium,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
+        SortFilterRow(),
+        if (issues.isEmpty) _EmptyState(),
         ...issues.map(
           (issue) {
             final secondary = '#${issue.number} '
@@ -68,6 +50,26 @@ class IssuesRowList extends StatelessWidget {
           },
         ),
       ],
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SizedBox(
+      height: 400,
+      child: Center(
+        child: Text(
+          'No flutter issue found',
+          style: theme.textTheme.titleMedium,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }
