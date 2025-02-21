@@ -11,7 +11,7 @@ class IssueDetailsCubitProvider extends BlocProvider<IssueDetailsCubit> {
   IssueDetailsCubitProvider({super.key, super.child, required String number})
       : super(
           create: (context) => IssueDetailsCubit(
-            getIssueUseCase: di(),
+            getIssueDetailsUseCase: di(),
             manageVisitedIssuesUseCase: di(),
             number: number,
           )
@@ -22,12 +22,12 @@ class IssueDetailsCubitProvider extends BlocProvider<IssueDetailsCubit> {
 
 class IssueDetailsCubit extends Cubit<IssueDetailsState> {
   IssueDetailsCubit({
-    required this.getIssueUseCase,
+    required this.getIssueDetailsUseCase,
     required this.manageVisitedIssuesUseCase,
     required this.number,
   }) : super(const IssueDetailsState());
 
-  final GetIssueUseCase getIssueUseCase;
+  final GetIssueDetailsUseCase getIssueDetailsUseCase;
   final ManageVisitedIssuesUseCase manageVisitedIssuesUseCase;
   final String number;
 
@@ -35,7 +35,7 @@ class IssueDetailsCubit extends Cubit<IssueDetailsState> {
     manageVisitedIssuesUseCase.set(number);
   }
 
-  Future<void> getIssue() => getIssueUseCase
+  Future<void> getIssue() => getIssueDetailsUseCase
       .call(number)
       .then((value) => emit(state.copyWith(issue: value)))
       .catchError((error) => emit(state.copyWith(error: error)));

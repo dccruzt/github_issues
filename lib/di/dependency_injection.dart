@@ -32,7 +32,7 @@ Future<void> initDependencies() async {
 
   di.registerFactory(() => GetIssuesUseCase(repository: di()));
 
-  di.registerFactory(() => GetIssueUseCase(repository: di()));
+  di.registerFactory(() => GetIssueDetailsUseCase(repository: di()));
 
   di.registerLazySingleton(() => ManageVisitedIssuesUseCase(repository: di()));
 }

@@ -46,20 +46,14 @@ class MockIssuesRepository extends _i1.Mock implements _i3.IssuesRepository {
           as _i4.Future<List<_i2.Issue>>);
 
   @override
-  _i4.Future<_i2.Issue> getIssue(String? number) =>
+  _i4.Future<_i2.Issue> getIssueDetails(String? number) =>
       (super.noSuchMethod(
-            Invocation.method(#getIssue, [number]),
+            Invocation.method(#getIssueDetails, [number]),
             returnValue: _i4.Future<_i2.Issue>.value(
-              _FakeIssue_0(this, Invocation.method(#getIssue, [number])),
+              _FakeIssue_0(this, Invocation.method(#getIssueDetails, [number])),
             ),
           )
           as _i4.Future<_i2.Issue>);
-
-  @override
-  void setVisitedIssue(String? issue) => super.noSuchMethod(
-    Invocation.method(#setVisitedIssue, [issue]),
-    returnValueForMissingStub: null,
-  );
 
   @override
   _i4.Future<List<String>> getVisitedIssues() =>
@@ -68,4 +62,10 @@ class MockIssuesRepository extends _i1.Mock implements _i3.IssuesRepository {
             returnValue: _i4.Future<List<String>>.value(<String>[]),
           )
           as _i4.Future<List<String>>);
+
+  @override
+  void setVisitedIssue(String? issue) => super.noSuchMethod(
+    Invocation.method(#setVisitedIssue, [issue]),
+    returnValueForMissingStub: null,
+  );
 }

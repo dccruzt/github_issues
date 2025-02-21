@@ -3,9 +3,9 @@ import '../entities/issue.dart';
 abstract class IssuesRepository {
   Future<List<Issue>> getIssues();
 
-  Future<Issue> getIssue(String number);
-
-  void setVisitedIssue(String issue);
+  Future<Issue> getIssueDetails(String number);
 
   Future<List<String>> getVisitedIssues();
+
+  void setVisitedIssue(String issue);
 }
