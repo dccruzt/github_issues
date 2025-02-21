@@ -36,4 +36,4 @@ A Flutter application that retrieves and displays Flutter GitHub issues from a p
 
 ## Author
 
-**Daniela Cruz**\
+**Daniela Cruz**
