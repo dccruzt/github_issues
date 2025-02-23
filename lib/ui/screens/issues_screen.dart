@@ -11,7 +11,12 @@ import 'error_screen.dart';
 import 'loading_screen.dart';
 
 class IssuesScreen extends StatelessWidget {
-  const IssuesScreen({super.key});
+  const IssuesScreen({
+    super.key,
+    required this.onThemeChanged,
+  });
+
+  final ValueChanged<bool> onThemeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class IssuesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Github issues', style: theme.textTheme.titleLarge),
-        actions: const [ThemeSwitch()],
+        actions: [ThemeSwitch(onThemeChanged: onThemeChanged)],
       ),
       body: IssuesCubitProvider(
         child: const IssuesList(),

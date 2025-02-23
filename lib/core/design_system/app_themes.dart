@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'spacings.dart';
 
-ThemeData lightAppThemeData = ThemeData(
+ThemeData lightAppThemeData = ThemeData.light().copyWith(
   scaffoldBackgroundColor: lightBackground,
   appBarTheme: const AppBarTheme(
     color: lightBackground,
@@ -32,7 +32,7 @@ ThemeData lightAppThemeData = ThemeData(
   ),
 );
 
-ThemeData darkAppThemeData = ThemeData(
+ThemeData darkAppThemeData = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: darkBackground,
   appBarTheme: const AppBarTheme(
     color: darkBackground,

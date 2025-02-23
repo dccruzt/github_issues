@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../core/theme_provider.dart';
 
 class ThemeSwitch extends StatelessWidget {
-  const ThemeSwitch({super.key});
+  const ThemeSwitch({
+    super.key,
+    required this.onThemeChanged,
+  });
+
+  final ValueChanged<bool> onThemeChanged;
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final brightness = Theme.of(context).brightness;
 
     return Switch(
-      value: themeProvider.isDark,
+      value: brightness == Brightness.dark,
       activeColor: Colors.red,
-      onChanged: (bool value) {
-        themeProvider.isDark = value;
-      },
+      onChanged: onThemeChanged,
     );
   }
 }
