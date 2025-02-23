@@ -8,8 +8,13 @@ enum FilterBy {
 }
 
 class FilterDropdownButton extends StatefulWidget {
-  const FilterDropdownButton({super.key, required this.onTap});
+  const FilterDropdownButton({
+    super.key,
+    required this.filterBy,
+    required this.onTap,
+  });
 
+  final FilterBy filterBy;
   final ValueChanged<FilterBy> onTap;
 
   @override
@@ -17,19 +22,13 @@ class FilterDropdownButton extends StatefulWidget {
 }
 
 class _FilterDropdownButtonState extends State<FilterDropdownButton> {
-  FilterBy dropdownValue = FilterBy.clear;
+  late FilterBy _dropdownValue;
 
-  String getFilterName(FilterBy filterBy) {
-    switch (filterBy) {
-      case FilterBy.clear:
-        return 'clear';
-      case FilterBy.moreThan2Comments:
-        return '2 comments';
-      case FilterBy.lastHour:
-        return 'last hour';
-      case FilterBy.frameworkLabel:
-        return 'framework';
-    }
+  @override
+  void initState() {
+    super.initState();
+
+    _dropdownValue = widget.filterBy;
   }
 
   @override
@@ -37,23 +36,28 @@ class _FilterDropdownButtonState extends State<FilterDropdownButton> {
     final theme = Theme.of(context);
 
     return DropdownButton<FilterBy>(
-      value: dropdownValue,
+      value: _dropdownValue,
       style: theme.textTheme.bodyLarge,
-      underline: Container(
-        height: 2,
-      ),
+      underline: Container(height: 2),
       onChanged: (FilterBy? value) {
         setState(() {
-          dropdownValue = value!;
+          _dropdownValue = value!;
           widget.onTap.call(value);
         });
       },
       items: FilterBy.values.map<DropdownMenuItem<FilterBy>>((FilterBy value) {
         return DropdownMenuItem<FilterBy>(
           value: value,
-          child: Text(getFilterName(value)),
+          child: Text(_getFilterName(value)),
         );
       }).toList(),
     );
   }
+
+  String _getFilterName(FilterBy filterBy) => switch (filterBy) {
+        FilterBy.clear => 'clear',
+        FilterBy.moreThan2Comments => '2 comments',
+        FilterBy.lastHour => 'last hour',
+        FilterBy.frameworkLabel => 'framework'
+      };
 }

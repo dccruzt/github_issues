@@ -3,17 +3,20 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/design_system/components/action_row.dart';
 import '../../domain/entities/issue.dart';
-import 'sort_filter_row.dart';
+import '../controller/issues/issues_state.dart';
+import 'sort_and_filter_row.dart';
 
 class IssuesRowList extends StatelessWidget {
   const IssuesRowList({
     super.key,
-    required this.issues,
+    required this.issuesState,
     required this.onTap,
   });
 
-  final List<Issue> issues;
+  final IssuesState issuesState;
   final ValueChanged<String> onTap;
+
+  List<Issue> get issues => issuesState.issues ?? [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,10 @@ class IssuesRowList extends StatelessWidget {
 
     return ListView(
       children: [
-        SortFilterRow(),
+        SortAndFilterRow(
+          sortBy: issuesState.sortBy,
+          filterBy: issuesState.filterBy,
+        ),
         if (issues.isEmpty) _EmptyState(),
         ...issues.map(
           (issue) {

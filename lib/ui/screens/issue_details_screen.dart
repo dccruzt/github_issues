@@ -25,6 +25,7 @@ class IssueDetailsScreen extends StatelessWidget {
           if (state.error != null) {
             return const ErrorScreen();
           }
+
           if (state.issue != null) {
             final description = '#${state.issue!.number} '
                 'created ${timeago.format(state.issue!.createdAt)} ago '
@@ -66,6 +67,7 @@ class IssueDetailsScreen extends StatelessWidget {
               ),
             );
           }
+
           return const LoadingScreen();
         },
       ),

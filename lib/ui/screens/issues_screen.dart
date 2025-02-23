@@ -44,12 +44,14 @@ class IssuesList extends StatelessWidget {
         if (state.error != null) {
           return const ErrorScreen();
         }
+
         if (state.issues != null) {
           return IssuesRowList(
-            issues: state.issues!,
+            issuesState: state,
             onTap: (number) => _onTap(context, number),
           );
         }
+
         return const LoadingScreen();
       },
     );

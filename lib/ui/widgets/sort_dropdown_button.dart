@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
-enum SortBy { newest, oldest, alphabet }
+enum SortBy {
+  newest,
+  oldest,
+  alphabet,
+}
 
 class SortDropdownButton extends StatefulWidget {
-  const SortDropdownButton({super.key, required this.onTap});
+  const SortDropdownButton({
+    super.key,
+    required this.sortBy,
+    required this.onTap,
+  });
 
+  final SortBy sortBy;
   final ValueChanged<SortBy> onTap;
 
   @override
@@ -12,21 +21,28 @@ class SortDropdownButton extends StatefulWidget {
 }
 
 class _SortDropdownButtonState extends State<SortDropdownButton> {
-  SortBy dropdownValue = SortBy.newest;
+  late SortBy _dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _dropdownValue = widget.sortBy;
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return DropdownButton<SortBy>(
-      value: dropdownValue,
+      value: _dropdownValue,
       style: theme.textTheme.bodyLarge,
       underline: Container(
         height: 2,
       ),
       onChanged: (SortBy? value) {
         setState(() {
-          dropdownValue = value!;
+          _dropdownValue = value!;
           widget.onTap.call(value);
         });
       },

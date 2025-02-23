@@ -39,8 +39,6 @@ class IssuesCubit extends Cubit<IssuesState> {
   final GetIssuesUseCase getIssuesUseCase;
   final ManageVisitedIssuesUseCase manageVisitedIssuesUseCase;
 
-  StreamSubscription<List<String>>? _subscription;
-
   Future<void> init() async {
     await getIssuesUseCase
         .call()
@@ -69,12 +67,16 @@ class IssuesCubit extends Cubit<IssuesState> {
   void _emit({
     List<Issue>? issues,
     List<Issue>? originalIssues,
+    SortBy? sortBy,
+    FilterBy? filterBy,
     Object? error,
   }) =>
       emit(
         state.copyWith(
           issues: issues,
           originalIssues: originalIssues,
+          sortBy: sortBy,
+          filterBy: filterBy,
           error: error,
         ),
       );
@@ -93,7 +95,7 @@ class IssuesCubit extends Cubit<IssuesState> {
         ),
     };
 
-    _emit(issues: sortedIssues, originalIssues: sortedIssues);
+    _emit(sortBy: sortBy, issues: sortedIssues, originalIssues: sortedIssues);
   }
 
   void filterIssues(FilterBy filterBy) {
@@ -118,12 +120,6 @@ class IssuesCubit extends Cubit<IssuesState> {
           .toList(),
     };
 
-    _emit(issues: filteredIssues);
-  }
-
-  @override
-  Future<void> close() {
-    _subscription?.cancel();
-    return super.close();
+    _emit(filterBy: filterBy, issues: filteredIssues);
   }
 }

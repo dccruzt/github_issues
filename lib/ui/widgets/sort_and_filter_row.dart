@@ -5,8 +5,15 @@ import '../controller/issues/issues_controller.dart';
 import 'filter_dropdown_button.dart';
 import 'sort_dropdown_button.dart';
 
-class SortFilterRow extends StatelessWidget {
-  const SortFilterRow({super.key});
+class SortAndFilterRow extends StatelessWidget {
+  const SortAndFilterRow({
+    super.key,
+    required this.sortBy,
+    required this.filterBy,
+  });
+
+  final SortBy sortBy;
+  final FilterBy filterBy;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +26,7 @@ class SortFilterRow extends StatelessWidget {
               const Text('sort by:'),
               const SizedBox(width: x1),
               SortDropdownButton(
+                sortBy: sortBy,
                 onTap: (value) =>
                     IssuesCubitProvider.of(context).sortIssues(value),
               ),
@@ -30,6 +38,7 @@ class SortFilterRow extends StatelessWidget {
               const Text('filter by:'),
               const SizedBox(width: x1),
               FilterDropdownButton(
+                filterBy: filterBy,
                 onTap: (value) =>
                     IssuesCubitProvider.of(context).filterIssues(value),
               ),
